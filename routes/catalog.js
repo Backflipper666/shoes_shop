@@ -3,12 +3,12 @@ const router = express.Router();
 
 const shoes_controller = require('../controllers/shoesController');
 const brand_controller = require('../controllers/brandController');
-const countryController = require('../controllers/countryController');
-const genderController = require('../controllers/genderController');
-const priceRangeController = require('../controllers/priceRageController');
-const seasonController = require('../controllers/seasonController');
-const sizeController = require('../controllers/sizeController');
-const styleController = require('../controllers/styleController');
+const country_controller = require('../controllers/countryController');
+const gender_controller = require('../controllers/genderController');
+const price_controller = require('../controllers/priceRangeController');
+const season_controller = require('../controllers/seasonController');
+const size_controller = require('../controllers/sizeController');
+const style_controller = require('../controllers/styleController');
 
 //shoes routes
 router.get('/', shoes_controller.index);
@@ -17,7 +17,7 @@ router.get('/', shoes_controller.index);
 router.get('/shoes/create', shoes_controller.shoes_create_get);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
-router.get('/shoes/create', book_controller.book_create_get);
+router.get('/shoes/create', shoes_controller.shoes_create_get);
 
 // GET request to delete Shoes.
 router.get('/shoes/:id/delete', shoes_controller.shoes_delete_get);
@@ -91,29 +91,31 @@ router.get('/sizes', size_controller.size_list);
 
 // AUTHOR ROUTES ///
 
-// GET request for creating Style. NOTE This must come before route for id (i.e. display style).
-router.get('/style/create', author_controller.author_create_get);
+/// COUNTRY ROUTES ///
 
-// POST request for creating Style.
-router.post('/style/create', author_controller.author_create_post);
+// GET request for creating Country. NOTE This must come before route for id (i.e. display country).
+router.get('/country/create', country_controller.country_create_get);
 
-// GET request to delete Style.
-router.get('/style/:id/delete', author_controller.author_delete_get);
+// POST request for creating Country.
+router.post('/country/create', country_controller.country_create_post);
 
-// POST request to delete Style.
-router.post('/style/:id/delete', author_controller.author_delete_post);
+// GET request to delete Country.
+router.get('/country/:id/delete', country_controller.country_delete_get);
 
-// GET request to update Style.
-router.get('/style/:id/update', author_controller.author_update_get);
+// POST request to delete Country.
+router.post('/country/:id/delete', country_controller.country_delete_post);
 
-// POST request to update Style.
-router.post('/style/:id/update', author_controller.author_update_post);
+// GET request to update Country.
+router.get('/country/:id/update', country_controller.country_update_get);
 
-// GET request for one Style.
-router.get('/style/:id', author_controller.author_detail);
+// POST request to update Country.
+router.post('/country/:id/update', country_controller.country_update_post);
 
-// GET request for list of all Styles.
-router.get('/styles', author_controller.author_list);
+// GET request for one Country.
+router.get('/country/:id', country_controller.country_detail);
+
+// GET request for list of all Countries.
+router.get('/countries', country_controller.country_list);
 
 // SEASON ROUTES ///
 
@@ -140,3 +142,81 @@ router.get('/season/:id', season_controller.season_detail);
 
 // GET request for list of all Seasons.
 router.get('/seasons', season_controller.season_list);
+
+/// GENDER ROUTES ///
+
+// GET request for creating Gender. NOTE This must come before route for id (i.e. display gender).
+router.get('/gender/create', gender_controller.gender_create_get);
+
+// POST request for creating Gender.
+router.post('/gender/create', gender_controller.gender_create_post);
+
+// GET request to delete Gender.
+router.get('/gender/:id/delete', gender_controller.gender_delete_get);
+
+// POST request to delete Gender.
+router.post('/gender/:id/delete', gender_controller.gender_delete_post);
+
+// GET request to update Gender.
+router.get('/gender/:id/update', gender_controller.gender_update_get);
+
+// POST request to update Gender.
+router.post('/gender/:id/update', gender_controller.gender_update_post);
+
+// GET request for one Gender.
+router.get('/gender/:id', gender_controller.gender_detail);
+
+// GET request for list of all Genders.
+router.get('/genders', gender_controller.gender_list);
+
+/// PRICE RANGE ROUTES ///
+
+// GET request for creating Price. NOTE This must come before route for id (i.e. display price).
+router.get('/price/create', price_controller.price_create_get);
+
+// POST request for creating Price.
+router.post('/price/create', price_controller.price_create_post);
+
+// GET request to delete Price.
+router.get('/price/:id/delete', price_controller.price_delete_get);
+
+// POST request to delete Price.
+router.post('/price/:id/delete', price_controller.price_delete_post);
+
+// GET request to update Price.
+router.get('/price/:id/update', price_controller.price_update_get);
+
+// POST request to update Price.
+router.post('/price/:id/update', price_controller.price_update_post);
+
+// GET request for one Price.
+router.get('/price/:id', price_controller.price_detail);
+
+// GET request for list of all Prices.
+router.get('/prices', price_controller.price_list);
+
+/// STYLE ROUTES ///
+
+// GET request for creating Style. NOTE This must come before route for id (i.e. display style).
+router.get('/style/create', style_controller.style_create_get);
+
+// POST request for creating Style.
+router.post('/style/create', style_controller.style_create_post);
+
+// GET request to delete Style.
+router.get('/style/:id/delete', style_controller.style_delete_get);
+
+// POST request to delete Style.
+router.post('/style/:id/delete', style_controller.style_delete_post);
+
+// GET request to update Style.
+router.get('/style/:id/update', style_controller.style_update_get);
+
+// POST request to update Style.
+router.post('/style/:id/update', style_controller.style_update_post);
+
+// GET request for one Style.
+router.get('/style/:id', style_controller.style_detail);
+
+// GET request for list of all Styles.
+router.get('/styles', style_controller.style_list);
