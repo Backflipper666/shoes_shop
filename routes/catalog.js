@@ -220,3 +220,5 @@ router.get('/style/:id', style_controller.style_detail);
 
 // GET request for list of all Styles.
 router.get('/styles', style_controller.style_list);
+
+module.exports = router;

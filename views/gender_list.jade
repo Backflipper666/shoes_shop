@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  ul
+    each gender in gender_list
+      li
+        a(href=gender.url)= gender.name
+    else
+      li There are no genres.
+    

@@ -14,7 +14,7 @@ var app = express();
 // Set up mongoose connection
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-const mongoDB = 'insert_your_database_url_here';
+const mongoDB = uri;
 
 main().catch((err) => console.log(err));
 async function main() {

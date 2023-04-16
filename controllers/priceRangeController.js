@@ -1,57 +1,57 @@
-const PriceRange = require('../models/priceRange');
+const price = require('../models/price');
 const asyncHandler = require('express-async-handler');
 
-// Display list of all price ranges.
-exports.priceRange_list = asyncHandler(async (req, res, next) => {
-  const priceRanges = await PriceRange.find();
-  res.render('priceRange_list', { title: 'Price Range List', priceRanges });
+// Display list of all prices.
+exports.price_list = asyncHandler(async (req, res, next) => {
+  const prices = await price.find();
+  res.render('price_list', { title: 'Price List', prices });
 });
 
-// Display detail page for a specific price range.
-exports.priceRange_detail = asyncHandler(async (req, res, next) => {
-  const priceRange = await PriceRange.findById(req.params.id);
-  res.render('priceRange_detail', { title: 'Price Range Detail', priceRange });
+// Display detail page for a specific price.
+exports.price_detail = asyncHandler(async (req, res, next) => {
+  const price = await price.findById(req.params.id);
+  res.render('price_detail', { title: 'Price Detail', price });
 });
 
-// Display Price Range create form on GET.
-exports.priceRange_create_get = asyncHandler(async (req, res, next) => {
-  res.render('priceRange_form', { title: 'Create Price Range' });
+// Display Price create form on GET.
+exports.price_create_get = asyncHandler(async (req, res, next) => {
+  res.render('price_form', { title: 'Create Price' });
 });
 
-// Handle Price Range create on POST.
-exports.priceRange_create_post = asyncHandler(async (req, res, next) => {
+// Handle Price create on POST.
+exports.price_create_post = asyncHandler(async (req, res, next) => {
   const { name } = req.body;
 
-  const priceRange = new PriceRange({ name });
-  await priceRange.save();
+  const price = new price({ name });
+  await price.save();
 
-  res.redirect(priceRange.url);
+  res.redirect(price.url);
 });
 
-// Display Price Range delete form on GET.
-exports.priceRange_delete_get = asyncHandler(async (req, res, next) => {
-  const priceRange = await PriceRange.findById(req.params.id);
-  res.render('priceRange_delete', { title: 'Delete Price Range', priceRange });
+// Display Price delete form on GET.
+exports.price_delete_get = asyncHandler(async (req, res, next) => {
+  const price = await price.findById(req.params.id);
+  res.render('price_delete', { title: 'Delete Price', price });
 });
 
-// Handle Price Range delete on POST.
-exports.priceRange_delete_post = asyncHandler(async (req, res, next) => {
-  await PriceRange.findByIdAndDelete(req.body.priceRangeId);
-  res.redirect('/price-ranges');
+// Handle Price delete on POST.
+exports.price_delete_post = asyncHandler(async (req, res, next) => {
+  await price.findByIdAndDelete(req.body.priceId);
+  res.redirect('/prices');
 });
 
-// Display Price Range update form on GET.
-exports.priceRange_update_get = asyncHandler(async (req, res, next) => {
-  const priceRange = await PriceRange.findById(req.params.id);
-  res.render('priceRange_form', { title: 'Update Price Range', priceRange });
+// Display Price update form on GET.
+exports.price_update_get = asyncHandler(async (req, res, next) => {
+  const price = await price.findById(req.params.id);
+  res.render('price_form', { title: 'Update Price', price });
 });
 
-// Handle Price Range update on POST.
-exports.priceRange_update_post = asyncHandler(async (req, res, next) => {
+// Handle Price update on POST.
+exports.price_update_post = asyncHandler(async (req, res, next) => {
   const { name } = req.body;
 
-  const priceRange = await PriceRange.findByIdAndUpdate(req.params.id, {
+  const price = await price.findByIdAndUpdate(req.params.id, {
     name,
   });
-  res.redirect(priceRange.url);
+  res.redirect(price.url);
 });

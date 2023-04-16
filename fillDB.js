@@ -72,7 +72,7 @@ db.once('open', async function () {
     { name: 'Argentina' },
   ];
 
-  await Country.insertMany(countryData);
+  // await Country.insertMany(countryData);
 
   // Create sample data for the Gender model
   const genderData = [
