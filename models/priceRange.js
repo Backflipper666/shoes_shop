@@ -4,8 +4,6 @@ const Schema = mongoose.Schema;
 
 const PriceRangeSchema = new Schema({
   name: { type: String, required: true },
-  minPrice: { type: Number, required: true },
-  maxPrice: { type: Number, required: true },
 });
 
 // Export model

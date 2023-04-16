@@ -10,7 +10,7 @@ const BrandSchema = new Schema({
 });
 
 // Virtual for author's full name
-BrandSchema.virtual('name').get(function () {
+/* BrandSchema.virtual('name').get(function () {
   // To avoid errors in cases where an author does not have either a family name or first name
   // We want to make sure we handle the exception by returning an empty string for that case
   let name = '';
@@ -21,7 +21,7 @@ BrandSchema.virtual('name').get(function () {
     name = '';
   }
   return name;
-});
+}); */
 
 // Virtual for author's URL
 BrandSchema.virtual('url').get(function () {
