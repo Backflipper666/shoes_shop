@@ -21,16 +21,10 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.shoes_list = asyncHandler(async (req, res, next) => {
-  const allShoes = await Shoes.find({}, 'title shoes')
+  const allShoes = await Shoes.find({})
     .sort({ name: 1 })
-    .populate('brand')
+    .populate('brand', 'name')
     .exec();
-
-  /*  for (let shoe of allShoes) {
-    const brand = await Brand.findOne({ name: shoe.brand });
-    shoe.brand = brand._id;
-    await shoe.save();
-  } */
 
   res.render('shoes_list', { title: 'Shoes List', shoes_list: allShoes });
 });
