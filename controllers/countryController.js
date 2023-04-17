@@ -4,7 +4,10 @@ const asyncHandler = require('express-async-handler');
 // Display list of all countries.
 exports.country_list = asyncHandler(async (req, res, next) => {
   const countryList = await Country.find({});
-  res.render('country_list', { title: 'Country List', countryList });
+  res.render('country_list', {
+    title: 'Country List',
+    country_list: countryList,
+  });
 });
 
 // Display detail page for a specific country.
