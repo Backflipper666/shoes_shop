@@ -21,7 +21,18 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.shoes_list = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Shoes list');
+  const allShoes = await Shoes.find({}, 'title shoes')
+    .sort({ name: 1 })
+    .populate('brand')
+    .exec();
+
+  /*  for (let shoe of allShoes) {
+    const brand = await Brand.findOne({ name: shoe.brand });
+    shoe.brand = brand._id;
+    await shoe.save();
+  } */
+
+  res.render('shoes_list', { title: 'Shoes List', shoes_list: allShoes });
 });
 
 exports.shoes_detail = asyncHandler(async (req, res, next) => {

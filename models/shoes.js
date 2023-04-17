@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ShoeSchema = new Schema({
-  brand: { type: String, required: true, maxlength: 100 },
+  brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
   name: { type: String, required: true, maxlength: 100 },
   price: { type: Number, required: true },
   country: { type: String, required: true, maxlength: 50 },

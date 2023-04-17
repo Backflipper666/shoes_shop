@@ -90,7 +90,7 @@ db.once('open', async function () {
     { name: '$200+' },
   ];
 
-  const shoes = [
+  const shoes1 = [
     {
       brand: 'Nike',
       name: 'Air Max 90',
@@ -182,10 +182,46 @@ db.once('open', async function () {
       style: 'casual',
     },
   ];
-  // await Shoes.insertMany(shoes);
+
+  //get name of shoes.brand
+  //find the _id of brand document in brands collection with the corresponding name
+  //run the updateOne query to change brand field of a shoes document
+
+  const { _id: brandId, name } = await Brand.findOne({ name: 'Vans' });
+  console.log(brandId, 'name is: ', name);
+
+  const shoes2 = {
+    brand: brandId,
+    name: 'Old Skool',
+    price: 65,
+    country: 'United States',
+    gender: 'male',
+    season: 'summer',
+    style: 'casual',
+  };
+  // await Shoes.create(shoes2);
   //   await PriceRange.insertMany(priceRangeData);
   // Remove existing countries with the same names as those in countryData
   //   await Country.deleteMany({ name: { $in: countryData.map((c) => c.name) } });
+  async function fillDB() {
+    try {
+      const brands = await Brand.find({}, '_id name'); // retrieve the _id and name fields of all brands
+
+      const shoes = shoes1.map((shoe) => {
+        const brand = brands.find((brand) => brand.name === shoe.brand);
+        return { ...shoe, brand: brand._id };
+      });
+
+      await Shoes.create(shoes);
+      console.log('Shoes collection populated');
+    } catch (err) {
+      console.error(err);
+    } finally {
+      mongoose.connection.close();
+    }
+  }
+
+  // fillDB();
 
   console.log('Sample data inserted successfully');
   mongoose.connection.close();
