@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+  h1 Country: #{country.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 
+
+    dl
+      each book in country
+        dt
+          a(href=book.url) #{book.name}
+        //- dd #{book.summary}
+
+      else
+        p This genre has no books
