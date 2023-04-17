@@ -1,18 +1,17 @@
+const uri = require('./uri');
 const mongoose = require('mongoose');
+const Shoes = require('./models/shoes');
 const Brand = require('./models/brand');
 const Size = require('./models/size');
 const Season = require('./models/season');
 const Country = require('./models/country');
 const Gender = require('./models/gender');
-const PriceRange = require('./models/priceRange');
+const PriceRange = require('./models/price');
 
-mongoose.connect(
-  'mongodb+srv://illicityvice:Jumper326@cluster0.dcafohp.mongodb.net/shoes_shop?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -90,6 +89,100 @@ db.once('open', async function () {
     { name: '$100 - $200' },
     { name: '$200+' },
   ];
+
+  const shoes = [
+    {
+      brand: 'Nike',
+      name: 'Air Max 90',
+      price: 120,
+      country: 'United States',
+      gender: 'male',
+      season: 'autumn',
+      style: 'casual',
+    },
+    {
+      brand: 'Adidas',
+      name: 'Superstar',
+      price: 100,
+      country: 'Germany',
+      gender: 'female',
+      season: 'spring',
+      style: 'athletic',
+    },
+    {
+      brand: 'Under Armour',
+      name: 'Charged Pursuit 2',
+      price: 80,
+      country: 'United States',
+      gender: 'unisex',
+      season: 'summer',
+      style: 'running',
+    },
+    {
+      brand: 'Puma',
+      name: 'Suede Classic',
+      price: 70,
+      country: 'Germany',
+      gender: 'male',
+      season: 'spring',
+      style: 'casual',
+    },
+    {
+      brand: 'Reebok',
+      name: 'Classic Leather',
+      price: 90,
+      country: 'United States',
+      gender: 'female',
+      season: 'autumn',
+      style: 'athletic',
+    },
+    {
+      brand: 'New Balance',
+      name: '574',
+      price: 80,
+      country: 'United States',
+      gender: 'unisex',
+      season: 'spring',
+      style: 'casual',
+    },
+    {
+      brand: 'Asics',
+      name: 'Gel-Kayano 28',
+      price: 160,
+      country: 'Japan',
+      gender: 'male',
+      season: 'summer',
+      style: 'running',
+    },
+    {
+      brand: 'Fila',
+      name: 'Disruptor II',
+      price: 65,
+      country: 'Italy',
+      gender: 'female',
+      season: 'autumn',
+      style: 'casual',
+    },
+    {
+      brand: 'Converse',
+      name: 'Chuck Taylor All Star',
+      price: 55,
+      country: 'United States',
+      gender: 'unisex',
+      season: 'spring',
+      style: 'casual',
+    },
+    {
+      brand: 'Vans',
+      name: 'Old Skool',
+      price: 65,
+      country: 'United States',
+      gender: 'male',
+      season: 'summer',
+      style: 'casual',
+    },
+  ];
+  // await Shoes.insertMany(shoes);
   //   await PriceRange.insertMany(priceRangeData);
   // Remove existing countries with the same names as those in countryData
   //   await Country.deleteMany({ name: { $in: countryData.map((c) => c.name) } });

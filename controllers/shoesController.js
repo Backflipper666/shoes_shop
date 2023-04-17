@@ -1,8 +1,23 @@
-const asyncHandler = require('express-async-handler');
 const Shoes = require('../models/shoes');
+const Countries = require('../models/country');
+const Brand = require('../models/brand');
+
+const { body, validationResult } = require('express-validator');
+const asyncHandler = require('express-async-handler');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Site Home Page');
+  const [numShoes, numCountries, numBrand, numPrice] = await Promise.all([
+    Shoes.countDocuments({}).exec(),
+    Countries.countDocuments({}).exec(),
+    Brand.countDocuments({}).exec(),
+  ]);
+
+  res.render('index', {
+    title: 'Shoes Store Homepage',
+    shoes_count: numShoes,
+    country_count: numCountries,
+    brand_count: numBrand,
+  });
 });
 
 exports.shoes_list = asyncHandler(async (req, res, next) => {
